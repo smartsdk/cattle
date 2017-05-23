@@ -4,10 +4,10 @@ jdk:
    - oraclejdk8
 
 install:
-   - sh ./scripts/release
+   - echo "install done"
 
 script:
-   - echo "done"
+   - sh ./scripts/release
 
 os:
   - linux
