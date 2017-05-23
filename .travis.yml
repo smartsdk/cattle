@@ -1,0 +1,13 @@
+language: java
+
+jdk:
+   - oraclejdk8
+
+install:
+   - sh ./scripts/release
+
+script:
+   - echo "done"
+
+os:
+  - linux
