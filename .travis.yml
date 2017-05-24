@@ -1,13 +1,18 @@
 language: java
-
 jdk:
-   - oraclejdk8
-
+- oraclejdk8
 install:
-   - echo "install done"
-
+- echo "install done"
 script:
-   - sh ./scripts/release
-
+- sh ./scripts/release
 os:
-  - linux
+- linux
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: TML8eF/jEaUjIDKT2Gm+c4vRXqqhpyWdNT7HbVDpDw+KSp3cEm3RbFUEcc3X198QFH3wOcpGG4137YEpbgP9wGiYAOv1lbhFK6LNp68dco1Mf83F8Ets0Y1AnclrAlzl4GBI5ieR8rZ+wbNBIaPvJXTHkemGs01vjbdBfTpi7uEXw2NDza8qsaMN4GUw4BRlWY7xlGhadNjTbrXmETSbS+Nqiek4eEwE6F9l1gjfPI/jqcgthOgD6sg7sxgehrjKatiV9u3TDta6NhCAqQ4JXN2qCShjvftIyRmHW7UmRJkXk9BoIP5XUT+rwyZO9J4GU/+d3L+R4EkLwlcOE4lAOUkkJ7qbk7uq9mktSuv+/3YOPZEt1qhIOL0Q9X4mCx2NyNlLbTeQaZQT20RXlgXOU9zsEdNgWX9wnbs6IlRqcQ7mlinwOPOTIsOm4AQWj5dX4hxQ9QQxgM6tQr+XvYZoPrMlGkifgg3jpZgzm4XMqx+JsY4OSc+lzV8vr62+7BKWDuSbS1m+kUZGyzo68/ihMfEuDMYtrdBhEMgg3p23fPkoiGYUlW/FJZcfl495K94837jBj5OIeHh/V/LAokqwGG4GdNTNxcG5DZuK/jm9MgxMR5q2bBth6hUx8VUBcFcIULLmxBOfD0QgvD8NsdRnx8OnIQ3QNxuaoeD2JadSZ4M=
+  file: ./dist/artifacts/cattle.jar
+  on:
+    tags: true
+    repo: Cerfoglg/cattle
