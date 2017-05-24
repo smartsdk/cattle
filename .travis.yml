@@ -1,12 +1,12 @@
 language: java
 jdk:
-- oraclejdk8
+  - oraclejdk8
 install:
-- echo "install done"
+  - sh ./scripts/release
 script:
-- sh ./scripts/release
+  - echo "install done"
 os:
-- linux
+  - linux
 deploy:
   provider: releases
   skip_cleanup: true
