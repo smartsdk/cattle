@@ -7,6 +7,8 @@ script:
   - echo "install done"
 os:
   - linux
+after_deploy:
+  - curl -H "Content-Type: application/json" --data '{"build": true}' -X POST https://registry.hub.docker.com/u/cerfoglg/rancher/trigger/66dd9a29-d89c-4ef2-a025-1c0de521bd47/
 deploy:
   provider: releases
   skip_cleanup: true
@@ -16,5 +18,3 @@ deploy:
   on:
     tags: true
     repo: Cerfoglg/cattle
-after-deploy:
-  - curl -H "Content-Type: application/json" --data '{"build": true}' -X POST https://registry.hub.docker.com/u/cerfoglg/rancher/trigger/66dd9a29-d89c-4ef2-a025-1c0de521bd47/
