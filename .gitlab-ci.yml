@@ -1,0 +1,33 @@
+# When using dind, it's wise to use the overlayfs driver for
+# improved performance.
+variables:
+  DOCKER_DRIVER: overlay2
+
+services:
+- name: gitlab-registry.fbk.eu/smartsdk-rancher/dind
+  alias: docker
+
+image: docker:latest
+
+before_script:
+- docker info
+
+stages:
+  - compile
+  - upload
+
+compile:
+  stage: compile
+  script:
+    - apk add --update make curl openssh-client
+    - make release
+    - mkdir -p ./compile_artifacts
+    - mv ./dist/artifacts/cattle.jar ./compile_artifacts/
+  artifacts:
+    paths:
+      - ./compile_artifacts/
+
+upload:
+  stage: upload
+  script:
+      - ./.uploader
